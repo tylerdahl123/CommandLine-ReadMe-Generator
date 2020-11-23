@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs =require('fs');
-
+const generateMarkdown = require('./utils/generateMarkdown.js');
 inquirer
 .prompt ([
     {
@@ -28,6 +28,16 @@ inquirer
         message: 'How or why would some one use your project?',
         name: 'usage',
     },
+    { 
+        type: 'input',
+        message: 'Do you have any rules for future collaboraters or developers?',
+        name: 'contr',
+    },
+    { 
+        type: 'input',
+        message: 'Did you run any tests for this app? If so what were they?',
+        name: 'test',
+    },
     {
         type: 'list',
         message: 'What liscense would you include in your Project?',
@@ -35,24 +45,30 @@ inquirer
         name: 'license',
     },
     {
-        typel: 'input',
+        type: 'input',
         message: 'What is the name of your github Account?',
         name: 'github',
     },
+    {
+        type: 'input',
+        message: 'What is the name of your github repo?',
+        name: 'repo',
+    },
 ]).then((data) => {
-    const { title, description, install, github, colab, usage,license} = data;
-    const markdown = `# Project Title \n ${title} #Description \n ${description} \n
- 
- #Install \n ${install}\n 
- #Collaborations\n ${colab}\n 
-#Usage \n${usage}\n 
- #license \n ${license}\n 
-#GitHub Account \n ${github}\n 
+    const { title, description, install, github, colab, usage,license, test, contr, repo} = data;
+    const markdown = `# \n ${title}
+    ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${github}/${repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${github}/${repo}?style=flat&logo=appveyor)
+# Description \n ${description}
+# Install \n ${install} 
+# Collaborations \n ${colab} 
+# Usage \n ${usage} 
+# license \n ${license} (https://img.shields.io/github/${license}/${github}/${repo}?style=flat&logo=appveyor)
+# GitHub Account \n ${github}
     `
 
    
     //read me .md
-fs.writeFile("Readme.md", (markdown), (err) => 
+fs.writeFile("README.md", (markdown), (err) => 
 err ? console.log(err) : console.log('sucess!')
 );
 });
