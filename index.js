@@ -15,13 +15,8 @@ inquirer
     },
     {
         type: 'input',
-        message: 'What do I need to install your project?',
+        message: 'What do I need to install to use your project?',
         name: 'install',
-    },
-    {
-        type: 'input',
-        message: 'Did you collaborate on this project? If so with who?',
-        name: 'colab',
     },
     {
         type: 'input',
@@ -54,28 +49,36 @@ inquirer
         message: 'What is the name of your github repo?',
         name: 'repo',
     },
+    { 
+        typer: 'input',
+        message: 'What is your Email Address',
+        name: 'email',
+    }
 ]).then((data) => {
-    const { title, description, install, github, colab, usage,license, test, contr, repo} = data;
-    const markdown = `![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${github}/${repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${github}/${repo}?style=flat&logo=appveyor)\n
+    const { title, description, install, github, usage,license, test, contr, repo, email} = data;
+    const markdown = `![Badge for Github License](https://img.shields.io/github/license/${github}/${repo})![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${github}/${repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${github}/${repo}?style=flat&logo=appveyor) \n
 # ${title}
 ## Description
  ---
  \n ${description}
 ## Install 
 ---
-\n Instructions for installing my application: ${install} 
-## Collaborations 
+\n ${install} 
+## Contributing 
 ---
-\n if you wish to collaborate with me on this project follow these steps: ${colab} 
+\n ${contr} 
 ## Usage 
 ---
 \n ${usage} 
-## license 
+## Tests
 ---
-\n I used ${license} license(s) ![Badge for Github repo license](https://img.shields.io/github/${license}/${github}/${repo})
+\n ${test}
+## License 
+---
+\n ${license} license(s) 
 ## Questions 
 ---
-\n  if you have any questions feel free to reach out to me at ${github} or email: 
+\n  if you have any questions feel free to reach out to me at [My Github](https://github.com/${github}) or feel free to email me at [My Email](${email}) 
     `
 
    
