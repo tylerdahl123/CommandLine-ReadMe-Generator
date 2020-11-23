@@ -15,7 +15,7 @@ inquirer
     },
     {
         type: 'input',
-        message: 'How would one go about installing your Project?',
+        message: 'What do I need to install your project?',
         name: 'install',
     },
     {
@@ -56,14 +56,26 @@ inquirer
     },
 ]).then((data) => {
     const { title, description, install, github, colab, usage,license, test, contr, repo} = data;
-    const markdown = `# \n ${title}
-    ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${github}/${repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${github}/${repo}?style=flat&logo=appveyor)
-# Description \n ${description}
-# Install \n ${install} 
-# Collaborations \n ${colab} 
-# Usage \n ${usage} 
-# license \n ${license} (https://img.shields.io/github/${license}/${github}/${repo}?style=flat&logo=appveyor)
-# GitHub Account \n ${github}
+    const markdown = `![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${github}/${repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${github}/${repo}?style=flat&logo=appveyor)\n
+# ${title}
+## Description
+ ---
+ \n ${description}
+## Install 
+---
+\n Instructions for installing my application: ${install} 
+## Collaborations 
+---
+\n if you wish to collaborate with me on this project follow these steps: ${colab} 
+## Usage 
+---
+\n ${usage} 
+## license 
+---
+\n I used ${license} license(s) ![Badge for Github repo license](https://img.shields.io/github/${license}/${github}/${repo})
+## Questions 
+---
+\n  if you have any questions feel free to reach out to me at ${github} or email: 
     `
 
    
